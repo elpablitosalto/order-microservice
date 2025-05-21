@@ -9,7 +9,7 @@ cd order-microservice
 
 2. Запустите все сервисы с помощью Docker Compose:
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 3. Дождитесь, пока все сервисы запустятся. Вы должны увидеть сообщения о запуске:
