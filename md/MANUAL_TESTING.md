@@ -23,7 +23,7 @@ docker compose up --build
 
 1. Open Postman
 2. Create a new POST request:
-   - URL: `http://localhost:8000/orders/`
+   - URL: `http://localhost:8080/orders/`
    - Method: POST
    - Headers: 
      - Key: `Content-Type`
@@ -63,7 +63,7 @@ docker compose up --build
 
 1. Copy `order_id` from the previous response
 2. Create a new GET request:
-   - URL: `http://localhost:8000/orders/{order_id}` (replace {order_id} with the copied ID)
+   - URL: `http://localhost:8080/orders/{order_id}` (replace {order_id} with the copied ID)
    - Method: GET
 
 3. Send the request
@@ -109,7 +109,7 @@ docker compose logs -f celery_worker
 1. Open a new terminal
 2. Connect to Redis CLI:
 ```bash
-docker exec -it order-microservice_redis_1 redis-cli
+docker exec -it order-microservice-redis-1 redis-cli
 ```
 
 3. Check queues:

@@ -41,7 +41,7 @@ docker compose up -d --build
 
 1. Check service availability:
 ```bash
-curl http://order-microservice.pavel-khmelev-portfolio.webtm.ru:8080/docs
+curl http://localhost:8080/docs
 ```
 
 2. Check logs:
