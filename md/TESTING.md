@@ -1,97 +1,96 @@
-# Testing Guide for Order Processing Microservice
+# Testing Guide
 
-## 1. Unit Tests
+This document provides instructions for running and writing tests for the Order Processing Microservice.
 
-1. Run unit tests:
+## Running Tests
+
+### Running All Tests
+To run all tests, use the following command:
+```bash
+pytest tests/
+```
+
+### Running Specific Test Categories
+- To run only unit tests:
 ```bash
 pytest tests/unit/
 ```
 
-2. Run tests with coverage report:
-```bash
-pytest --cov=app tests/unit/
-```
-
-## 2. Integration Tests
-
-1. Run integration tests:
-```bash
-pytest tests/integration/
-```
-
-2. Run all tests with coverage:
-```bash
-pytest --cov=app tests/
-```
-
-## 3. API Tests
-
-1. Start the service:
-```bash
-docker compose up -d
-```
-
-2. Run API tests:
+- To run only API tests:
 ```bash
 pytest tests/api/
 ```
 
-## 4. Performance Tests
-
-1. Install locust:
+- To run a specific test:
 ```bash
-pip install locust
+pytest tests/unit/test_models.py::test_order_creation
 ```
 
-2. Run performance tests:
-```bash
-locust -f tests/performance/locustfile.py
-```
+## Test Structure
 
-3. Open http://localhost:8089 in your browser
+The test suite is organized into the following directories:
+- `tests/unit/` - Unit tests for models and business logic
+- `tests/api/` - API endpoint tests
+- `tests/conftest.py` - Test fixtures and configuration
 
-## 5. Test Reports
+## Test Database
 
-1. Generate HTML coverage report:
-```bash
-pytest --cov=app --cov-report=html tests/
-```
+The tests use SQLite as the test database. A fresh database is created and destroyed for each test, ensuring:
+- Test isolation
+- Clean test environment
+- No interference between tests
 
-2. Open `htmlcov/index.html` in your browser
+## Adding New Tests
 
-## 6. Test Data
+You can add new tests in the appropriate test files. Here are some examples of tests you might want to add:
 
-1. Test data is located in `tests/data/`
-2. Fixtures are in `tests/fixtures/`
+### Data Validation Tests
+- Input validation
+- Data type checking
+- Required field validation
+- Business rule validation
 
-## 7. Test Configuration
+### Error Handling Tests
+- Invalid input handling
+- Database error handling
+- External service error handling
+- Authentication/Authorization error handling
 
-1. Test configuration is in `pytest.ini`
-2. Environment variables for tests are in `.env.test`
+### Business Logic Tests
+- Order processing logic
+- Payment processing
+- Inventory management
+- Status transitions
 
-## 8. Continuous Integration
+### Integration Tests
+- Service-to-service communication
+- External API integration
+- Message queue integration
+- Database integration
 
-1. Tests are automatically run on push to main branch
-2. Coverage report is generated and published
-3. Performance tests are run daily
+## Test Fixtures
 
-## 9. Test Maintenance
+The `conftest.py` file contains reusable test fixtures:
+- Database session management
+- Test client setup
+- Common test data
 
-1. Keep test data up to date
-2. Update tests when API changes
-3. Monitor test coverage
-4. Review and update performance test scenarios
+## Best Practices
 
-## 10. Troubleshooting
+1. Keep tests focused and atomic
+2. Use descriptive test names
+3. Follow the Arrange-Act-Assert pattern
+4. Clean up resources after tests
+5. Use appropriate assertions
+6. Mock external dependencies
+7. Write tests before implementing features (TDD)
 
-1. If tests fail:
-   - Check test data
-   - Verify environment variables
-   - Check service logs
-   - Review recent changes
+## Need Help?
 
-2. If performance tests fail:
-   - Check system resources
-   - Verify network connectivity
-   - Review test scenarios
-   - Check service configuration 
+If you need assistance with:
+- Writing specific tests
+- Understanding test patterns
+- Debugging test failures
+- Adding new test categories
+
+Please reach out to the development team for guidance. 
